@@ -44,6 +44,8 @@ github.com/jinzhu/inflection v1.0.0/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkr
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=
 github.com/kr/pty v1.1.1/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=
 github.com/kr/text v0.1.0/go.mod h1:4Jbv+DJW3UT/LiOwJeYQe1efqtUx/iVham/4vfdArNI=
+github.com/mikespook/gorbac v2.3.0+incompatible h1:1SeMRHaync+4dLGLFxshPLlOEP9qCgGuNrB4k7HSg3I=
+github.com/mikespook/gorbac v2.3.0+incompatible/go.mod h1:IZtfzfI4wPQxddP0qrFEzLJxM4BbT7c86I3j8I5rD/8=
 github.com/mmcloughlin/meow v0.0.0-20181112033425-871e50784daf h1:bD6uvpTs5gpzCesUWCGmlEUnU2OINvCQHri8geYwuv0=
 github.com/mmcloughlin/meow v0.0.0-20181112033425-871e50784daf/go.mod h1:uxCZJI8Z1PD2WRnSJtVJGHCyxC5qWhz5lOsx3Bx1NXo=
 github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e/go.mod h1:zD1mROLANZcx1PVRCS0qkT7pwLkGfwJo4zjcN/Tysno=
