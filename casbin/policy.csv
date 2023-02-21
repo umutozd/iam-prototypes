@@ -1,0 +1,11 @@
+p, otsimo.com/ticket/viewer, ticket, read
+p, otsimo.com/ticket/editor, ticket, write
+p, otsimo.com/ticket/maintainer, ticket, delete
+p, elif, ticket, write
+
+g, otsimo.com/ticket/editor, otsimo.com/ticket/viewer
+g, otsimo.com/ticket/maintainer, otsimo.com/ticket/editor
+
+g, selahattin, otsimo.com/ticket/viewer
+g, umut, otsimo.com/ticket/editor
+g, sercan, otsimo.com/ticket/maintainer
