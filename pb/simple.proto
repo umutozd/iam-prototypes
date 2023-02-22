@@ -3,7 +3,7 @@ package otsimo.simple.v1;
 
 option go_package = "pb";
 
-service FWAdminFilter { rpc Hello(HelloReq) returns (HelloRes); }
+service SimpleService { rpc Hello(HelloReq) returns (HelloRes); }
 
 message HelloReq { string name = 1; }
 

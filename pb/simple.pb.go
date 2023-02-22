@@ -125,18 +125,17 @@ func init() {
 func init() { proto.RegisterFile("simple.proto", fileDescriptor_5ffd045dd4d042c1) }
 
 var fileDescriptor_5ffd045dd4d042c1 = []byte{
-	// 162 bytes of a gzipped FileDescriptorProto
+	// 159 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x29, 0xce, 0xcc, 0x2d,
 	0xc8, 0x49, 0xd5, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x12, 0xc8, 0x2f, 0x29, 0xce, 0xcc, 0xcd,
 	0xd7, 0x83, 0x0a, 0x96, 0x19, 0x2a, 0xc9, 0x71, 0x71, 0x78, 0xa4, 0xe6, 0xe4, 0xe4, 0x07, 0xa5,
 	0x16, 0x0a, 0x09, 0x71, 0xb1, 0xe4, 0x25, 0xe6, 0xa6, 0x4a, 0x30, 0x2a, 0x30, 0x6a, 0x70, 0x06,
 	0x81, 0xd9, 0x4a, 0x2a, 0x70, 0xf9, 0x62, 0x21, 0x09, 0x2e, 0xf6, 0xdc, 0xd4, 0xe2, 0xe2, 0xc4,
-	0x74, 0x98, 0x12, 0x18, 0xd7, 0x28, 0x80, 0x8b, 0xd7, 0x2d, 0xdc, 0x31, 0x25, 0x37, 0x33, 0xcf,
-	0x2d, 0x33, 0xa7, 0x24, 0xb5, 0x48, 0xc8, 0x9e, 0x8b, 0x15, 0xac, 0x4d, 0x48, 0x4a, 0x0f, 0xdd,
-	0x4a, 0x3d, 0x98, 0x7d, 0x52, 0xb8, 0xe5, 0x8a, 0x9d, 0x44, 0x4e, 0x3c, 0x92, 0x63, 0xbc, 0xf0,
-	0x48, 0x8e, 0xf1, 0xc1, 0x23, 0x39, 0xc6, 0x19, 0x8f, 0xe5, 0x18, 0xa2, 0x98, 0x0a, 0x92, 0x92,
-	0xd8, 0xc0, 0xde, 0x30, 0x06, 0x04, 0x00, 0x00, 0xff, 0xff, 0x9c, 0x09, 0xdc, 0x2f, 0xd6, 0x00,
-	0x00, 0x00,
+	0x74, 0x98, 0x12, 0x18, 0xd7, 0x28, 0x80, 0x8b, 0x37, 0x18, 0x6c, 0x64, 0x70, 0x6a, 0x51, 0x59,
+	0x66, 0x72, 0xaa, 0x90, 0x3d, 0x17, 0x2b, 0x58, 0x9b, 0x90, 0x94, 0x1e, 0xba, 0x95, 0x7a, 0x30,
+	0xfb, 0xa4, 0x70, 0xcb, 0x15, 0x3b, 0x89, 0x9c, 0x78, 0x24, 0xc7, 0x78, 0xe1, 0x91, 0x1c, 0xe3,
+	0x83, 0x47, 0x72, 0x8c, 0x33, 0x1e, 0xcb, 0x31, 0x44, 0x31, 0x15, 0x24, 0x25, 0xb1, 0x81, 0xbd,
+	0x61, 0x0c, 0x08, 0x00, 0x00, 0xff, 0xff, 0x78, 0x4e, 0x42, 0x8f, 0xd6, 0x00, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -147,64 +146,64 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// FWAdminFilterClient is the client API for FWAdminFilter service.
+// SimpleServiceClient is the client API for SimpleService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type FWAdminFilterClient interface {
+type SimpleServiceClient interface {
 	Hello(ctx context.Context, in *HelloReq, opts ...grpc.CallOption) (*HelloRes, error)
 }
 
-type fWAdminFilterClient struct {
+type simpleServiceClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewFWAdminFilterClient(cc *grpc.ClientConn) FWAdminFilterClient {
-	return &fWAdminFilterClient{cc}
+func NewSimpleServiceClient(cc *grpc.ClientConn) SimpleServiceClient {
+	return &simpleServiceClient{cc}
 }
 
-func (c *fWAdminFilterClient) Hello(ctx context.Context, in *HelloReq, opts ...grpc.CallOption) (*HelloRes, error) {
+func (c *simpleServiceClient) Hello(ctx context.Context, in *HelloReq, opts ...grpc.CallOption) (*HelloRes, error) {
 	out := new(HelloRes)
-	err := c.cc.Invoke(ctx, "/otsimo.simple.v1.FWAdminFilter/Hello", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/otsimo.simple.v1.SimpleService/Hello", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// FWAdminFilterServer is the server API for FWAdminFilter service.
-type FWAdminFilterServer interface {
+// SimpleServiceServer is the server API for SimpleService service.
+type SimpleServiceServer interface {
 	Hello(context.Context, *HelloReq) (*HelloRes, error)
 }
 
-func RegisterFWAdminFilterServer(s *grpc.Server, srv FWAdminFilterServer) {
-	s.RegisterService(&_FWAdminFilter_serviceDesc, srv)
+func RegisterSimpleServiceServer(s *grpc.Server, srv SimpleServiceServer) {
+	s.RegisterService(&_SimpleService_serviceDesc, srv)
 }
 
-func _FWAdminFilter_Hello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SimpleService_Hello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(HelloReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FWAdminFilterServer).Hello(ctx, in)
+		return srv.(SimpleServiceServer).Hello(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/otsimo.simple.v1.FWAdminFilter/Hello",
+		FullMethod: "/otsimo.simple.v1.SimpleService/Hello",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FWAdminFilterServer).Hello(ctx, req.(*HelloReq))
+		return srv.(SimpleServiceServer).Hello(ctx, req.(*HelloReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _FWAdminFilter_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "otsimo.simple.v1.FWAdminFilter",
-	HandlerType: (*FWAdminFilterServer)(nil),
+var _SimpleService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "otsimo.simple.v1.SimpleService",
+	HandlerType: (*SimpleServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Hello",
-			Handler:    _FWAdminFilter_Hello_Handler,
+			Handler:    _SimpleService_Hello_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
