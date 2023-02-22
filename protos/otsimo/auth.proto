@@ -1,0 +1,16 @@
+syntax = "proto3";
+package otsimo.auth;
+
+option go_package = "gitlab.com/mono/protos/otsimo;otsimo";
+
+import "google/protobuf/descriptor.proto";
+
+message OtsimoAuth {
+  repeated string groups = 1;
+  bool api_key = 2;
+}
+
+extend google.protobuf.MethodOptions {
+  // See `OtsimoAuth`.
+  OtsimoAuth config = 72125710;
+}

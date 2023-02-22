@@ -1,0 +1,19 @@
+syntax = "proto2";
+package otsimo_form;
+
+option go_package = "gitlab.com/mono/protos/otsimo;otsimo";
+
+import "google/protobuf/descriptor.proto";
+
+message Validator {
+  optional int32 minLength = 1;
+  optional string regex = 2;
+}
+
+extend google.protobuf.FieldOptions {
+  optional string format = 64003;
+  optional bool readonly = 64004;
+  optional bool hasDynamicSource = 61005;
+  optional string sourceKey = 64005;
+  optional Validator validator = 64007;
+}

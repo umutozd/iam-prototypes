@@ -1,0 +1,22 @@
+syntax = "proto3";
+package otsimo;
+
+option go_package = "gitlab.com/mono/protos/otsimo;otsimo";
+
+message PaginationQuery {
+  enum Sort {
+    ASC = 0;
+    DESC = 1;
+  }
+  string field_value = 1;
+  string field_name = 2;
+  Sort sort = 3;
+  int32 limit = 4;
+}
+
+message Pagination {
+  oneof pagination {
+    string token = 1;
+    PaginationQuery query = 2;
+  }
+}

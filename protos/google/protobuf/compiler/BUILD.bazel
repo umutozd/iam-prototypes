@@ -1,0 +1,6 @@
+proto_library(
+    name = "plugin_go_proto",
+    srcs = ["plugin.proto"],
+    visibility = ["//visibility:public"],
+    deps = ["@com_google_protobuf//:descriptor_proto"],
+)

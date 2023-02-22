@@ -1,0 +1,10 @@
+name: protoc-gen-gofast
+type: go
+root: protos/protoc-gen-gofast
+golang:
+  package: github.com/otsimo/apis/protos/protoc-gen-gofast
+  cgoEnabled: false
+  ldflags: "-w -X main.Version=${BUILD_VERSION}"
+  builder: go
+  localWorkDir: false
+  mod: vendor
