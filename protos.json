@@ -1,0 +1,9 @@
+{
+  "versions": {
+    "protoc": "v21.7",
+    "grpc-gateway": "v1.14.7",
+    "swift": "1.18.0",
+    "grpc-swift": "1.6.1",
+    "grpc-java": "1.39.0"
+  }
+}

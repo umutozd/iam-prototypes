@@ -1,0 +1,8 @@
+version: "1"
+outputdir: ./bin
+projects:
+  - name: protoc-gen-gofast
+    link: protos/protoc-gen-gofast/obm.yaml
+
+  - name: simple
+    protoScript: pb/proto.py
