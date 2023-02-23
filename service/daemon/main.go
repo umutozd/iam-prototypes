@@ -7,9 +7,10 @@ import (
 )
 
 func main() {
+	logrus.SetLevel(logrus.DebugLevel)
 	cfg := &service.Config{
 		Port:    8080,
-		AuthLib: auth.AuthLibNameOso,
+		AuthLib: auth.AuthLibNameCasbin,
 	}
 
 	srv, err := service.NewServer(cfg)
