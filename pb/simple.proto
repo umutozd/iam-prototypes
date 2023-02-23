@@ -3,8 +3,19 @@ package otsimo.simple.v1;
 
 option go_package = "pb";
 
-service SimpleService { rpc Hello(HelloReq) returns (HelloRes); }
+service SimpleService {
+  rpc GetFoo(GetFooReq) returns (Foo);
+  rpc UpdateFoo(UpdateFooReq) returns (Foo);
+}
 
-message HelloReq { string name = 1; }
+message Foo {
+  string id = 1;
+  int32 count = 2;
+}
 
-message HelloRes { string message = 1; }
+message GetFooReq { string name = 1; }
+
+message UpdateFooReq {
+  string foo_id = 1;
+  int32 count = 2;
+}
