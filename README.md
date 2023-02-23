@@ -28,6 +28,8 @@ In [./service](./service/) and [./client](./client) directories, you can find a 
 
 The server has the capability to use each of these libraries seamlessly. The library choice is currently `hard-coded` 😢, but there will be an option to choose it later. The client has no idea which auth library is used.
 
+## Running Server and Client
+
 Run the server with:
 
 ```sh
@@ -39,5 +41,3 @@ The client is implemented as a unit test, so running that test will run the clie
 ```sh
 go test -run ^TestClientCreds$ github.com/umutozd/iam-prototypes/client
 ```
-
-## Running Server and Client
