@@ -6,6 +6,7 @@ import (
 	"github.com/sercand/graceful"
 	"github.com/umutozd/iam-prototypes/auth"
 	"github.com/umutozd/iam-prototypes/auth/casbin"
+	"github.com/umutozd/iam-prototypes/auth/gorbac"
 	"github.com/umutozd/iam-prototypes/auth/oso"
 	"github.com/umutozd/iam-prototypes/pb"
 	"google.golang.org/grpc"
@@ -23,9 +24,10 @@ func NewServer(cfg *Config) (*Server, error) {
 	}
 	switch cfg.AuthLib {
 	case auth.AuthLibNameCasbin:
-		s.auth, err = casbin.NewCasbinAuth(pb.SimpleServiceAuthConfig.Rules.Permissions, pb.SimpleServiceAuthConfig.Rules.InheritanceRules)
+		s.auth, err = casbin.NewCasbinAuth(pb.SimpleServiceAuthConfig.CasbinConfig.Permissions, pb.SimpleServiceAuthConfig.CasbinConfig.InheritanceRules)
 	case auth.AuthLibNameGorbac:
-		// TODO
+		cfg := pb.SimpleServiceAuthConfig.GorbacConfig
+		s.auth, err = gorbac.NewGorbacAuth(cfg.Roles, cfg.Permissions, cfg.PermissionsToRoles, cfg.InheritanceRules)
 	case auth.AuthLibNameOso:
 		s.auth, err = oso.NewOsoAuth([]any{pb.Foo{}}, pb.OsoPolicy)
 	default:

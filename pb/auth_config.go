@@ -35,8 +35,8 @@ type ServiceAuthConfig struct {
 	ServiceName string
 	Methods     []*AuthMethodConfig
 
-	// Casbin-specific fields
-	Rules *PermissionConfig
+	CasbinConfig *CasbinConfig
+	GorbacConfig *GorbacConfig
 }
 
 type AuthMethodConfig struct {
@@ -46,9 +46,16 @@ type AuthMethodConfig struct {
 	Action      string
 }
 
-type PermissionConfig struct {
+type CasbinConfig struct {
 	Permissions      [][]string
 	InheritanceRules [][]string
+}
+
+type GorbacConfig struct {
+	Roles              []string
+	Permissions        []string
+	PermissionsToRoles map[string][]string
+	InheritanceRules   map[string][]string
 }
 
 // SimpleServiceAuthConfig is the auth config to be used by the new auth libraries. This should
@@ -67,7 +74,7 @@ var SimpleServiceAuthConfig = ServiceAuthConfig{
 			Action:     "write",
 		},
 	},
-	Rules: &PermissionConfig{
+	CasbinConfig: &CasbinConfig{
 		Permissions: [][]string{
 			{"otsimo.com/foo/viewer", "Foo", "read"},
 			{"otsimo.com/foo/editor", "Foo", "write"},
@@ -76,6 +83,28 @@ var SimpleServiceAuthConfig = ServiceAuthConfig{
 		InheritanceRules: [][]string{
 			{"otsimo.com/foo/editor", "otsimo.com/foo/viewer"},
 			{"otsimo.com/foo/maintainer", "otsimo.com/foo/editor"},
+		},
+	},
+	GorbacConfig: &GorbacConfig{
+		Roles: []string{
+			"otsimo.com/foo/viewer",
+			"otsimo.com/foo/editor",
+			"otsimo.com/foo/maintainer",
+		},
+		Permissions: []string{"read", "write", "delete"},
+		PermissionsToRoles: map[string][]string{
+			"read":   {"otsimo.com/foo/viewer"},
+			"write":  {"otsimo.com/foo/editor"},
+			"delete": {"otsimo.com/foo/maintainer"},
+		},
+		InheritanceRules: map[string][]string{
+			"otsimo.com/foo/maintainer": {
+				"otsimo.com/foo/editor",
+				"otsimo.com/foo/viewer",
+			},
+			"otsimo.com/foo/editor": {
+				"otsimo.com/foo/viewer",
+			},
 		},
 	},
 }
