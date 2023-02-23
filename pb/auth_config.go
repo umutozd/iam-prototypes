@@ -34,13 +34,21 @@ role = roleName;
 type ServiceAuthConfig struct {
 	ServiceName string
 	Methods     []*AuthMethodConfig
+
+	// Casbin-specific fields
+	Rules *PermissionConfig
 }
 
 type AuthMethodConfig struct {
 	FullMethod  string
+	AllowAPIKey bool
 	Resource    proto.Message
 	Action      string
-	AllowAPIKey bool
+}
+
+type PermissionConfig struct {
+	Permissions      [][]string
+	InheritanceRules [][]string
 }
 
 // SimpleServiceAuthConfig is the auth config to be used by the new auth libraries. This should
@@ -57,6 +65,17 @@ var SimpleServiceAuthConfig = ServiceAuthConfig{
 			FullMethod: "/otsimo.simple.v1.SimpleService/UpdateFoo",
 			Resource:   &Foo{},
 			Action:     "write",
+		},
+	},
+	Rules: &PermissionConfig{
+		Permissions: [][]string{
+			{"otsimo.com/foo/viewer", "Foo", "read"},
+			{"otsimo.com/foo/editor", "Foo", "write"},
+			{"otsimo.com/foo/maintainer", "Foo", "delete"},
+		},
+		InheritanceRules: [][]string{
+			{"otsimo.com/foo/editor", "otsimo.com/foo/viewer"},
+			{"otsimo.com/foo/maintainer", "otsimo.com/foo/editor"},
 		},
 	},
 }
