@@ -31,7 +31,7 @@ func TestGorbac(t *testing.T) {
 
 	// set inheritance rules: child has all permissions of its parents
 	mustSetParents(t, rbac, ticketEditor, ticketViewer)
-	mustSetParents(t, rbac, ticketMaintainer, ticketEditor, ticketViewer)
+	mustSetParents(t, rbac, ticketMaintainer, ticketEditor)
 
 	cases := []*struct {
 		name     string
