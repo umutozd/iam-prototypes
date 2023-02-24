@@ -26,7 +26,7 @@ In the [./pb](./pb) directory, you can find a sample `gRPC` server proto file wi
 
 In [./service](./service/) and [./client](./client) directories, you can find a Go implementation of the gRPC server described in [Protobuf Files](#protobuf-files) section and an example client implementation that connects to that server.
 
-The server has the capability to use each of these libraries seamlessly. The library choice is currently `hard-coded` 😢, but there will be an option to choose it later. The client has no idea which auth library is used.
+The server has the capability to use each of these libraries seamlessly. The client has no idea which auth library is used.
 
 ## Running Server and Client
 
