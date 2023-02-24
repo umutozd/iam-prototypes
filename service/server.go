@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/sercand/graceful"
+	"github.com/sirupsen/logrus"
 	"github.com/umutozd/iam-prototypes/auth"
 	"github.com/umutozd/iam-prototypes/auth/casbin"
 	"github.com/umutozd/iam-prototypes/auth/gorbac"
@@ -22,6 +23,7 @@ func NewServer(cfg *Config) (*Server, error) {
 	s := &Server{
 		cfg: cfg,
 	}
+	logrus.Infof("using auth-lib %q", cfg.AuthLib)
 	switch cfg.AuthLib {
 	case auth.AuthLibNameCasbin:
 		s.auth, err = casbin.NewCasbinAuth(pb.SimpleServiceAuthConfig.CasbinConfig.Permissions, pb.SimpleServiceAuthConfig.CasbinConfig.InheritanceRules)

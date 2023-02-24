@@ -1,6 +1,9 @@
 package main
 
 import (
+	"fmt"
+	"os"
+
 	"github.com/sirupsen/logrus"
 	"github.com/umutozd/iam-prototypes/auth"
 	"github.com/umutozd/iam-prototypes/service"
@@ -38,11 +41,16 @@ func main() {
 		},
 	}
 
+	app.Action = runAction
+	if err := app.Run(os.Args); err != nil {
+		logrus.WithError(err).Fatal("server exited with error")
+	}
+}
+
+func runAction(c *cli.Context) error {
 	srv, err := service.NewServer(config)
 	if err != nil {
-		logrus.WithError(err).Fatal("error creating server")
+		return fmt.Errorf("error creating server: %v", err)
 	}
-	if err = srv.Listen(); err != nil {
-		logrus.WithError(err).Fatal("server stopped with error")
-	}
+	return srv.Listen()
 }
